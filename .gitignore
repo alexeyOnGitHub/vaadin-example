@@ -1,0 +1,8 @@
+*.iml
+.idea
+build
+out
+webui/src/main/webapp/VAADIN/gwt-unitCache
+webui/src/main/webapp/VAADIN/widgetsets/alskor.vaadin.widgetset.Vaadin1Widgetset
+
+

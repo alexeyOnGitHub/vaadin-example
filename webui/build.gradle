@@ -1,0 +1,34 @@
+apply plugin: 'war'
+
+dependencies {
+//    compile 'org.vaadin.addons:googleanalyticstracker:2.0.0'
+
+    compile libraries.slf4j
+    providedCompile libraries.servletAPI
+    providedCompile "com.vaadin:vaadin-client:$vaadinVersion"
+
+    compile "com.vaadin:vaadin-server:$vaadinVersion"
+    compile "com.vaadin:vaadin-client-compiled:$vaadinVersion"
+    compile "com.vaadin:vaadin-themes:$vaadinVersion"
+
+    compile project(":db")
+//    testCompile project(":test-utilities")
+}
+
+// See https://github.com/johndevs/gradle-vaadin-plugin#readme
+// the latest plugin version (0.7 at this moment) fails on javadoc target.
+// I reported this here: https://github.com/johndevs/gradle-vaadin-plugin/issues/91
+// and switched from "latest" (the next line) to v. 0.6.5
+//apply from: 'http://plugins.jasoft.fi/vaadin.plugin'
+apply from: 'http://plugins.jasoft.fi/vaadin.plugin?version=0.6.5'
+
+vaadin {
+    version = vaadinVersion
+    widgetset = 'alskor.vaadin.widgetset.Vaadin1Widgetset'
+    gwt.jvmArgs = ['-Xmx800m']
+}
+
+war {
+    // Exclude unneccessery GWT Compiler artifacts
+    exclude "**/gwt-unitCache/**"
+}
