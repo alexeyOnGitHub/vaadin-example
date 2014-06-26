@@ -16,6 +16,8 @@ import com.vaadin.ui.Layout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
+import static alskor.vaadin.page.UIBuilder.createSummaryFragment;
+
 public class MainView extends VerticalLayout implements View {
     private final Navigator navigator;
     private final TripManager tripManager;
@@ -53,7 +55,7 @@ public class MainView extends VerticalLayout implements View {
         String parameters = event.getParameters();
 
         if (Strings.isNullOrEmpty(parameters)) {
-            currentComponentArea.addComponent(new SummaryFragment(navigator, tripManager.getAll().size()));
+            currentComponentArea.addComponent(createSummaryFragment(navigator, tripManager.getAll().size()));
         } else if (parameters.equals(EditTripFragment.URI_CREATE)) {
             Trip trip = new Trip();
             currentComponentArea.addComponent(createEditTripFragment(trip));
