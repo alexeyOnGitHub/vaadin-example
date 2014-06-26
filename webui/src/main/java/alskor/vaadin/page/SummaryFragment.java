@@ -1,7 +1,6 @@
 package alskor.vaadin.page;
 
 import alskor.vaadin.Buttons;
-import alskor.vaadin.db.TrainManager;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;

@@ -1,6 +1,6 @@
 package alskor.vaadin;
 
-import alskor.vaadin.db.TrainManager;
+import alskor.vaadin.db.TripManager;
 import alskor.vaadin.page.MainView;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
@@ -15,7 +15,7 @@ import com.vaadin.ui.VerticalLayout;
 public class GCApplication extends UI {
     private Navigator navigator;
     private Authenticator authenticator;
-    private TrainManager manager = new TrainManager();
+    private TripManager manager = new TripManager();
 
     @Override
     protected void init(VaadinRequest request) {

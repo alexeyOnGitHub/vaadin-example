@@ -1,7 +1,7 @@
 package alskor.vaadin;
 
 import alskor.vaadin.db.Trip;
-import alskor.vaadin.db.TrainManager;
+import alskor.vaadin.db.TripManager;
 import org.junit.Test;
 
 import java.util.Collection;
@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 public class TripManagerTest {
     @Test
     public void tripAdded() {
-        TrainManager manager = new TrainManager();
+        TripManager manager = new TripManager();
         Trip trip = new Trip();
         trip.setStartLocation("SF");
         trip.setFinishLocation("Berkeley");

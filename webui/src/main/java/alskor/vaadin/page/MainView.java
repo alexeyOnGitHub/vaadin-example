@@ -1,7 +1,7 @@
 package alskor.vaadin.page;
 
 import alskor.vaadin.Authenticator;
-import alskor.vaadin.db.TrainManager;
+import alskor.vaadin.db.TripManager;
 import alskor.vaadin.db.Trip;
 import com.google.common.base.Strings;
 import com.vaadin.data.util.MethodProperty;
@@ -18,14 +18,14 @@ import com.vaadin.ui.VerticalLayout;
 
 public class MainView extends VerticalLayout implements View {
     private final Navigator navigator;
-    private final TrainManager trainManager;
+    private final TripManager tripManager;
     private HorizontalLayout currentComponentArea = new HorizontalLayout();
 
     public MainView(Navigator navigator,
                     Authenticator authenticator,
-                    TrainManager trainManager) {
+                    TripManager tripManager) {
         this.navigator = navigator;
-        this.trainManager = trainManager;
+        this.tripManager = tripManager;
         Header header = new Header(authenticator);
         header.setHeight("50px");
         header.setWidth(100, Sizeable.Unit.PERCENTAGE);
@@ -53,16 +53,16 @@ public class MainView extends VerticalLayout implements View {
         String parameters = event.getParameters();
 
         if (Strings.isNullOrEmpty(parameters)) {
-            currentComponentArea.addComponent(new SummaryFragment(navigator, trainManager.getAll().size()));
+            currentComponentArea.addComponent(new SummaryFragment(navigator, tripManager.getAll().size()));
         } else if (parameters.equals(EditTripFragment.URI_CREATE)) {
             Trip trip = new Trip();
             currentComponentArea.addComponent(createEditTripFragment(trip));
         } else if (parameters.startsWith(EditTripFragment.URI_EDIT)) {
             long tripId = parseIdFromURI(parameters);
-            final Trip trip = trainManager.get(tripId);
+            final Trip trip = tripManager.get(tripId);
             currentComponentArea.addComponent(createEditTripFragment(trip));
         } else if (TripsFragment.URI.equals(parameters)) {
-            currentComponentArea.addComponent(new TripsFragment(navigator, trainManager.getAll()));
+            currentComponentArea.addComponent(new TripsFragment(navigator, tripManager.getAll()));
         }
     }
 
@@ -84,7 +84,7 @@ public class MainView extends VerticalLayout implements View {
             }
 
             private void saveClicked() {
-                trainManager.save(trip);
+                tripManager.save(trip);
                 Notification.show("Saved", Notification.Type.HUMANIZED_MESSAGE);
                 navigator.navigateTo("/" + TripsFragment.URI);
             }

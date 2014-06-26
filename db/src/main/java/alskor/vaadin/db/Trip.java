@@ -1,14 +1,12 @@
 package alskor.vaadin.db;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "TRIP" )
+@Table(name = "TRIP")
 public class Trip {
     private Long id;
     private String status;
@@ -23,8 +21,7 @@ public class Trip {
     }
 
     @Id
-    @GeneratedValue(generator="increment")
-    @GenericGenerator(name="increment", strategy = "increment")
+    @GeneratedValue
     public Long getId() {
         return id;
     }
